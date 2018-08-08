@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/IAmGroot2/.vs
+/IAmGroot2/IAmGroot2/.vs/IAmGroot2/DesignTimeBuild
+/IAmGroot2/IAmGroot2/.vs/IAmGroot2/v15
+/IAmGroot2/IAmGroot2/bin
+/IAmGroot2/IAmGroot2/node_modules
+/IAmGroot2/IAmGroot2/obj/Debug

@@ -1,0 +1,13 @@
+﻿{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "amd",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "target": "es5"
+  }
+}
