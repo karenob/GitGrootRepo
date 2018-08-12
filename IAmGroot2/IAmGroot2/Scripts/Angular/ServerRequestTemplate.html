@@ -1,0 +1,24 @@
+﻿<form method="post" [formGroup]="ServerRequestForm" novalidate #ServerRequestContainer id="ServerRequestForm" name="ServerRequestForm">
+    <div>
+        <div id="editableDiv">
+            <h4>Please specify your server details</h4>
+            <div clss="row">
+                <div class="form-group col-md-3">
+                    <div>
+                        <label for="serverTypeHtmlId">Server Type</label>
+                        <select id="serverType">
+                            <option>AWS</option>
+                            <option>Azure</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!ServerRequestForm.pristine">
+                <div class="text-right">
+                    <button type="button" class="btn btn-secondary" id="btnClose" (click)="resetForm(CpiSubmitClaimForm)">Reset</button>
+                    <button type="button" class="btn btn-primary" value="Submit" name="Submit" id="btnSubmit" (click)="showConfirmationModal()">Submit Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -166,7 +166,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="gulpfile.js" />
     <Content Include="Images\Groot.jpg" />
+    <Content Include="Scripts\Angular\ServerRequestTemplate.html" />
     <Content Include="Scripts\Angular\LoginComponent.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -206,6 +208,7 @@
     <Content Include="tsconfig.json" />
     <Content Include="typings\globals\es6-shim\typings.json" />
     <Content Include="Views\Shared\_ApplicationLayout.cshtml" />
+    <None Include="Views\Home\ServerRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -225,6 +228,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Angular\ServerRequestComponent.ts" />
     <TypeScriptCompile Include="Scripts\Angular\LoginComponent.ts" />
     <TypeScriptCompile Include="typings\globals\es6-shim\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />

@@ -8,3 +8,5 @@
 /IAmGroot2/IAmGroot2/bin
 /IAmGroot2/IAmGroot2/node_modules
 /IAmGroot2/IAmGroot2/obj/Debug
+/IAmGroot2/IAmGroot2/Scripts/Angular/*.js
+/IAmGroot2/IAmGroot2/Scripts/Angular/*.js.map
