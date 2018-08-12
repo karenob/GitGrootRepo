@@ -12,7 +12,7 @@ define("/Scripts/Angular/LoginComponent", ["require", "exports", "@angular/core"
     Object.defineProperty(exports, "__esModule", { value: true });
     var LoginComponent = (function () {
         function LoginComponent() {
-            this.name = 'Angular2 - Karen';
+            this.name = 'Angular2 - Jackie';
         }
         LoginComponent = __decorate([
             core_1.Component({

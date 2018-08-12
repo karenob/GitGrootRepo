@@ -9,6 +9,7 @@
 /IAmGroot2/IAmGroot2/node_modules
 /IAmGroot2/IAmGroot2/obj/Debug
 
+
 # Needed for angular cli generated project.
 
 ## compiled output
@@ -48,4 +49,7 @@ testem.log
 ## System Files
 .DS_Store
 Thumbs.db
+
+/IAmGroot2/IAmGroot2/Scripts/Angular/*.js
+/IAmGroot2/IAmGroot2/Scripts/Angular/*.js.map
 

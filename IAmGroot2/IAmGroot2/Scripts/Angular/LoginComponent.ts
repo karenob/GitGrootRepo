@@ -12,7 +12,8 @@ import { HttpModule } from '@angular/http';
 export class LoginComponent {
     constructor() { }
 
-    name: string = 'Angular2 - Karen';
+    name: string = 'Angular2 - Jackie';
+
 }
 
 @NgModule({

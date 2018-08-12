@@ -1,0 +1,17 @@
+﻿@using IAmGroot2.Extensions;
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
+}
+<serverRequestComponent></serverRequestComponent>
+@section Scripts{
+    @if (Html.IsRelease())
+    {
+        <script src="~/Scripts/bundles/ServerRequestComponent.min.js"></script>
+    }
+    else
+    {
+        <script type="text/javascript">System.import('Scripts/Angular/ServerRequestComponent');</script>
+    }
+}
+
