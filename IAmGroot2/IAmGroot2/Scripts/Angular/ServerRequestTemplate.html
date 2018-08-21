@@ -1,23 +1,149 @@
 ﻿<form method="post" [formGroup]="ServerRequestForm" novalidate #ServerRequestContainer id="ServerRequestForm" name="ServerRequestForm">
-    <div>
-        <div id="editableDiv">
-            <h4>Please specify your server details</h4>
-            <div clss="row">
+    <div class="center-block mainContent" *ngIf="!showMessage">
+        <div>
+            <h3>Please specify your server details</h3>
+            <div class="row">
                 <div class="form-group col-md-3">
-                    <div>
-                        <label for="serverTypeHtmlId">Server Type</label>
-                        <select id="serverType">
-                            <option>AWS</option>
-                            <option>Azure</option>
+                    <div><label for="serverTypeHtmlId" class="control-label">Server Type<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                    <div class="inner-addon right-addon">
+                        <select formControlName="ServerType" id="serverTypeHtmlId" class="form-control" (change)="onServerTypeChange($event.target.value)"
+                                required autocomplete="off" validation [controlRef]="ServerRequestForm.controls.serverType" [requiredValidator]="true">
+                            <option *ngFor="let select of serverType" [value]="select.Value">{{ select.Description }}</option>
                         </select>
                     </div>
                 </div>
-            </div>
-            <div *ngIf="!ServerRequestForm.pristine">
-                <div class="text-right">
-                    <button type="button" class="btn btn-secondary" id="btnClose" (click)="resetForm(CpiSubmitClaimForm)">Reset</button>
-                    <button type="button" class="btn btn-primary" value="Submit" name="Submit" id="btnSubmit" (click)="showConfirmationModal()">Submit Request</button>
+                <div class="form-group col-md-3" *ngIf="selectedServerType != ''">
+                    <div><label for="complianceId" class="control-label">PCI/HIPAA Compliance<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                    <div class="inner-addon right-addon">
+                        <select formControlName="Compliance" id="complianceHtmlid" class="form-control" (change)="onComplianceChange($event.target.value)"
+                                required autocomplete="off" validation [controlRef]="ServerRequestForm.controls.Compliance" [requiredValidator]="true">
+                            <option *ngFor="let select of compliance" [value]="select.Value">{{ select.Description }}</option>
+                        </select>
+                        <i *ngIf="ServerRequestForm.controls.Compliance.valid == false && ServerRequestForm.controls.Compliance.touched == true" class="form-control-feedback glyphicon glyphicon-exclamation-sign glyphicon-error"></i>
+                    </div>
                 </div>
+                <div class="form-group col-md-3" *ngIf="selectedCompliance != ''">
+                    <tooltipComponent [controlRef]="ServerRequestForm.controls.Purpose" elementId="PurposeHtmlId" message="Function is required." errorType="required"></tooltipComponent>
+                    <tooltipComponent [controlRef]="ServerRequestForm.controls.Purpose" elementId="PurposeHtmlId" message="Function must be alphanumeric." errorType="pattern"></tooltipComponent>
+                    <div><label for="PurposeId" class="control-label">Function<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                    <div class="inner-addon right-addon">
+                        <input id="PurposeHtmlId" type="text" class="form-control" autocomplete="off" maxlength="50" patternValidator="^[a-zA-Z0-9 .-]*$"
+                               validation [controlRef]="ServerRequestForm.controls.Purpose" [requiredValidator]="true"
+                               formControlName="Purpose" name="PurposeHtmlId" />
+                        <i *ngIf="ServerRequestForm.controls.Purpose.valid == false && ServerRequestForm.controls.Purpose.touched == true" class="form-control-feedback glyphicon glyphicon-exclamation-sign glyphicon-error"></i>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div *ngIf="ServerRequestForm.controls.Purpose.value != ''">
+                        <div><label for="environmentHtmlid" class="control-label">Server Environment<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                        <div class="inner-addon right-addon">
+                            <select formControlName="Environment" id="environmentHtmlid" class="form-control" (change)="onEnvironmentChange($event.target.value)"
+                                    required autocomplete="off" validation [controlRef]="ServerRequestForm.controls.Environment" [requiredValidator]="true">
+                                <option *ngFor="let select of serverEnvironment" [value]="select.Value">{{ select.Description }}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div *ngIf="selectedServerEnvironment != ''">
+                        <div><label for="list2Htmlid" class="control-label">Memory/CPU<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                        <div class="inner-addon right-addon">
+                            <select formControlName="List2" id="list2Htmlid" class="form-control" (change)="onList2Change($event.target.value)"
+                                    required autocomplete="off" validation [controlRef]="ServerRequestForm.controls.list2" [requiredValidator]="true">
+                                <option *ngFor="let select of list2" [value]="select.Value">{{ select.Description }}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div *ngIf="selectedList2 != ''">
+                        <div><label for="primaryDriveHtmlid" class="control-label">Primary Drive<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                        <div class="inner-addon right-addon">
+                            <select formControlName="PrimaryDrive" id="primaryDriveHtmlid" class="form-control" (change)="onPrimaryDriveChange($event.target.value)"
+                                    required autocomplete="off" validation [controlRef]="ServerRequestForm.controls.PrimaryDrive" [requiredValidator]="true">
+                                <option *ngFor="let select of primaryDrive" [value]="select.Value">{{ select.Description }}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-3" *ngIf="selectedPrimaryDrive != ''">
+                    <tooltipComponent [controlRef]="ServerRequestForm.controls.SecondaryDrive" elementId="SecondaryDriveHtmlId" message="Secondary Drive is required." errorType="required"></tooltipComponent>
+                    <tooltipComponent [controlRef]="ServerRequestForm.controls.SecondaryDrive" elementId="SecondaryDriveHtmlId" message="Secondary Drive must be numeric." errorType="pattern"></tooltipComponent>
+                    <div><label for="SecondaryDriveId" class="control-label">Secondary Drive (in 32GB Increments)<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                    <div class="inner-addon right-addon">
+                        <input id="SecondaryDriveHtmlId" type="text" class="form-control" autocomplete="off" maxlength="5" patternValidator="^[0-9]*$"
+                               validation [controlRef]="ServerRequestForm.controls.SecondaryDrive" [requiredValidator]="true"
+                               formControlName="SecondaryDrive" name="SecondaryDriveHtmlId" />
+                        <i *ngIf="ServerRequestForm.controls.SecondaryDrive.valid == false && ServerRequestForm.controls.SecondaryDrive.touched == true" class="form-control-feedback glyphicon glyphicon-exclamation-sign glyphicon-error"></i>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div *ngIf="ServerRequestForm.controls.SecondaryDrive.value != ''">
+                        <div><label for="serverOSHtmlid" class="control-label">Operating System<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                        <div class="inner-addon right-addon">
+                            <select formControlName="ServerOS" id="serverOSHtmlid" class="form-control" (change)="onServerOSChange($event.target.value)"
+                                    required autocomplete="off" validation [controlRef]="ServerRequestForm.controls.ServerOS" [requiredValidator]="true">
+                                <option *ngFor="let select of serverOS" [value]="select.Value">{{ select.Description }}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="selectedServerOS != ''">
+                <div class="form-group col-md-3">
+                    <tooltipComponent [controlRef]="ServerRequestForm.controls.Email" elementId="emailHtmlId" message="Email is required." errorType="required"></tooltipComponent>
+                    <tooltipComponent [controlRef]="ServerRequestForm.controls.Email" elementId="emailHtmlId" message="Email format is invalid." errorType="pattern"></tooltipComponent>
+                    <div><label for="emailHtmlId" class="control-label">Email<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                    <div class="inner-addon right-addon">
+                        <input id="emailHtmlId" type="text" class="form-control" maxlength="50"
+                               formControlName="Email" [controlRef]="ServerRequestForm.controls.Email" name="emailHtmlId" 
+                               validation
+                               [patternValidator]="emailPattern" [requiredValidator]="true" />
+                        <i *ngIf="ServerRequestForm.controls.Email.valid == false && ServerRequestForm.controls.Email.touched == true" class="form-control-feedback glyphicon glyphicon-exclamation-sign glyphicon-error"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!ServerRequestForm.pristine" style="padding-top: 5px;">
+            <div class="text-right">
+                <button type="button" class="btn btn-secondary" id="btnClose" (click)="resetForm(ServerRequestForm)">Reset</button>
+                <button type="button" class="btn btn-primary" value="Submit" name="Submit" id="btnSubmit" (click)="submitForm()">Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showMessage" class="center-block mainContent">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info">
+                    <h4>Server Request Submitted Successfully</h4>
+                    <label>
+                        <b>Thank you for your request.</b><br />
+                        Your information will be reviewed by management.  
+                    </label>
+                </div>
+            </div>
+        </div>
+        <h5>Server Request Details</h5>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 view">
+                    <fieldDetailComponent label="Server Type" [value]="selectedServerTypeDesc"></fieldDetailComponent>
+                    <fieldDetailComponent label="PCI/HIPAA Compliance" [value]="selectedComplianceDesc"></fieldDetailComponent>
+                    <fieldDetailComponent label="Function" [value]="ServerRequestForm.controls.Purpose.value"></fieldDetailComponent>
+                    <fieldDetailComponent label="Server Environment" [value]="selectedServerEnvironmentDesc"></fieldDetailComponent>
+                    <fieldDetailComponent label="Memory/CPU" [value]="selectedList2Desc"></fieldDetailComponent>
+                    <fieldDetailComponent label="Primary Drive" [value]="selectedPrimaryDriveDesc"></fieldDetailComponent>
+                    <fieldDetailComponent label="Secondary Drive" [value]="selectedSecondaryDesc"></fieldDetailComponent>
+                    <fieldDetailComponent label="Operating System" [value]="selectedServerOSDesc"></fieldDetailComponent>
+                    <fieldDetailComponent label="Requested By" [value]="this.ServerRequestForm.controls.Email.value"></fieldDetailComponent>
+                </div>               
             </div>
         </div>
     </div>

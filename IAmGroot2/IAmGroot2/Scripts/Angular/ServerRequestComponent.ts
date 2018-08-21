@@ -1,30 +1,200 @@
 ﻿/// <amd-module name="/Scripts/Angular/ServerRequestComponent" />
 import {
-    WindowOverlayComponent, QueryList, Inject, ReactiveFormsModule, FormBuilder, FormControl, FormGroup, FormsModule, Validators
+    AjaxService, OverlayComponent, Savable, TooltipComponent, TwoWayListComponent, platformBrowserDynamic, QueryList,
+    StepComponent, StepMenuComponent, ValidationDirective, BrowserModule, HttpModule, Component, ElementRef, Inject, NgModule, ViewChild,
+    ReactiveFormsModule, FormBuilder, FormControl, FormGroup, FormsModule, Validators, MaskDirective, DatePickerComponent, AddressComponent,
+    FieldDetailComponent, AddressDetailComponent
 } from './SWBC.Components';
 import { ViewChildren } from '@angular/core';
-import { NgModule, Component } from '@angular/core';
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { HttpModule } from '@angular/http';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'serverRequestComponent',
     templateUrl: '/Scripts/Angular/ServerRequestTemplate.html'
 })
-export class ServerRequestComponent {
-    @ViewChildren(WindowOverlayComponent) windowOverlayComponents: QueryList<WindowOverlayComponent>;
+export class ServerRequestComponent extends Savable {
+    serverType: any;
+    list2: any;
+    compliance: any;
+    selectedCompliance = "";
+    purpose: any;
+    selectedServerType = "";
+    selectedList2 = "";
+    serverEnvironment: any;
+    selectedServerEnvironment = "";
+    primaryDrive: any;
+    selectedPrimaryDrive = "";
+    serverOS: any;
+    selectedServerOS = "";
+    ServerRequestForm: FormGroup;
+    showMessage = false;
+    emailPattern = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}';
+    selectedSecondaryDesc = "";
+    selectedServerTypeDesc = "";
+    selectedList2Desc = "";
+    selectedServerEnvironmentDesc = "";
+    selectedServerOSDesc = "";
+    selectedPrimaryDriveDesc = "";
+    selectedComplianceDesc = "";
 
-    windowOverlayComponent: WindowOverlayComponent;
-    constructor(@Inject(Window) private window: any) {
-       
+    constructor(@Inject(Window) private window: any,
+        private formBuilder: FormBuilder,
+        private ajax: AjaxService, ) {
+        super();
+        this.createForm();
+    }
+
+    private createForm() {
+        this.serverType = [
+            { Description: '--Select--', Value: '' },
+            { Description: 'AWS', Value: 'AWS' },
+            { Description: 'Azure', Value: 'AZURE' }
+
+        ];
+        this.compliance = [
+            { Description: '--Select--', Value: '' },
+            { Description: 'Yes', Value: 'Y' },
+            { Description: 'No', Value: 'N' }
+
+        ];
+        this.list2 = [
+            { Description: '--Select--', Value: '' },
+            { Description: 'Tiny: 2 CPUs, 4GB RAM', Value: 't2.medium' },
+            { Description: 'Small: 2 CPUs, 8GB RAM', Value: 't2.large' },
+            { Description: 'Medium: 4 CPUs, 16GB RAM', Value: 't2.xlarge' },
+            { Description: 'Large: 8 CPUs, 32GB RAM', Value: 't2.2xlarge' }
+
+        ];
+
+        this.serverEnvironment = [
+            { Description: '--Select--', Value: '' },
+            { Description: 'Dev', Value: 'D' },
+            { Description: 'Unit Test', Value: 'U' },
+            { Description: 'QA', Value: 'QA' },
+            { Description: 'Beta', Value: 'B' },
+            { Description: 'Prod', Value: 'P' }
+        ];
+
+        this.purpose = [
+            { Description: '--Select--', Value: '' },
+            { Description: '4GB', Value: '4GB' },
+            { Description: '8GB', Value: '8GB' },
+            { Description: '64GB', Value: '64GB' }
+        ];
+
+        this.primaryDrive = [
+            { Description: '--Select--', Value: '' },
+            { Description: '72GB', Value: '72GB' },
+            { Description: '127GB', Value: '127GB' }
+        ];
+
+        this.serverOS = [
+            { Description: '--Select--', Value: '' },
+            { Description: 'Windows Server 2012 R2', Value: 'Windows2012R2' },
+            { Description: 'Windows Server 2016', Value: 'Windows2016' },
+            { Description: 'Linux 6.0', Value: 'Linux6.0' },
+            { Description: 'Linux 7.0', Value: 'Linux7.0' }
+        ];
+
+        this.ServerRequestForm = this.formBuilder.group({
+            ServerType: new FormControl("", Validators.required),
+            List2: "",
+            Purpose: "",
+            Compliance: "",
+            Environment: "",
+            PrimaryDrive: "",
+            SecondaryDrive: "",
+            ServerOS: "",
+            Email: ""
+        });
+    }
+
+    private onServerTypeChange(selectedServerType) {
+        this.selectedServerType = selectedServerType;
+        this.serverType.find((item) => {
+            if (item.Value === selectedServerType) {
+                this.selectedServerTypeDesc = item.Description;
+            }
+        });
+    }
+    private onComplianceChange(selectedCompliance) {
+        this.selectedCompliance = selectedCompliance;
+        this.compliance.find((item) => {
+            if (item.Value === selectedCompliance) {
+                this.selectedComplianceDesc = item.Description;
+            }
+        });
+    }
+
+    private onList2Change(selectedList2) {
+        this.selectedList2 = selectedList2;
+        this.list2.find((item) => {
+            if (item.Value === selectedList2) {
+                this.selectedList2Desc = item.Description;
+            }
+        });
+    }
+
+    private onEnvironmentChange(value) {
+        this.selectedServerEnvironment = value;
+        this.serverEnvironment.find((item) => {
+            if (item.Value === value) {
+                this.selectedServerEnvironmentDesc = item.Description;
+            }
+        });
+    }
+
+    private onPrimaryDriveChange(value) {
+        this.selectedPrimaryDrive = value;
+        this.primaryDrive.find((item) => {
+            if (item.Value === value) {
+                this.selectedPrimaryDriveDesc = item.Description;
+            }
+        });
+    }
+    private onServerOSChange(value) {
+        this.selectedServerOS = value;
+        this.serverOS.find((item) => {
+            if (item.Value === value) {
+                this.selectedServerOSDesc = item.Description;
+            }
+        });
     }
     
-
     private showConfirmationModal() {
-        this.windowOverlayComponent.show();
+
     }
 
+    private submitForm() {
+        if (!super.validate(this.ServerRequestForm, document.querySelector('#ServerRequestForm'))) return;
+        let submitCommand = {
+            serverType: this.selectedServerType,
+            memoryCpu: this.selectedList2,
+            purpose: this.ServerRequestForm.controls.Purpose.value,
+            compliance: this.selectedCompliance,
+            environment: this.selectedServerEnvironment,
+            primaryDrive: this.selectedPrimaryDrive,
+            secondaryDrive: this.ServerRequestForm.controls.SecondaryDrive.value,
+            serverOS: this.selectedServerOS,
+            email: this.ServerRequestForm.controls.Email.value
+        }
+
+        this.selectedSecondaryDesc = this.ServerRequestForm.controls.SecondaryDrive.value + "GB";
+
+        //let _url = '/home/contact';
+        //this.ajax.post(_url, submitCommand,
+        //    data => {
+        //        this.saved();
+        //        this.ServerRequestForm.markAsPristine();
+        //        setTimeout(() => { this.showMessage = true; }, 1500);  //Delay so the overlay message has time to fade. 
+        //    },
+        //    (response) => {
+        //        this.errored(response);
+        //        //this.errorWindowOverlayComponent.show();
+        //    }
+        //);
+        this.showMessage = true;
+    }
 }
 
 @NgModule({
@@ -36,11 +206,13 @@ export class ServerRequestComponent {
     ],
     declarations: [
         ServerRequestComponent,
-        WindowOverlayComponent
+        ValidationDirective,
+        TooltipComponent,
+        FieldDetailComponent
     ],
     entryComponents: [ServerRequestComponent],
     bootstrap: [ServerRequestComponent],
-    providers: [{ provide: Window, useValue: window }]
+    providers: [AjaxService, { provide: Window, useValue: window }]
 })
 export class ServerRequestModule { }
 platformBrowserDynamic().bootstrapModule(ServerRequestModule);

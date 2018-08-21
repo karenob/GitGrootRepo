@@ -1,9 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
+﻿/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -22,12 +17,15 @@ select,
 textarea {
     max-width: 280px;
 }
-/*hr {
-    border-style: solid;
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-color: brown;
-}*/
+h3 {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #003478;
+    border-bottom-color: none;
+    border-bottom-style: none;
+    padding: 0 0 8px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    float: left;
+    width: 100%
+}
