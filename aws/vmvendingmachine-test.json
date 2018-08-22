@@ -1,0 +1,10 @@
+{
+  "StartAt": "Approval",
+  "States": {
+    "Approval": {
+      "Type" : "Task",
+      "Resource": "REDACTED",
+      "End": true
+    }
+  }
+}
