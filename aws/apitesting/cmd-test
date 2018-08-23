@@ -1,0 +1,6 @@
+wget -v --output-document=start --content-on-error --header='x-api-key: BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV' https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/start
+
+wget -v --output-document=complete --content-on-error --post-data='{"executionArn":"____","activityArn":"___","approved":true}' --header='x-api-key: BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV' https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/complete
+
+wget -v --output-document=check --content-on-error --post-data='{"executionArn":"____"}' --header='x-api-key: BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV' https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/check
+

@@ -1,0 +1,112 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Lambdas for VM Vending Machine"
+Parameters:
+  Parameter____:
+    Type: "String"
+    Description: ""
+Resources:
+  RoleExecuteOwn:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          Effect: "Allow"
+          Principal:
+            Service:
+              - "lambda.amazonaws.com"
+          Action:
+            - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      #Policies: 
+  Lambda____:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Description: ""
+      Role: !GetAtt RoleExecuteOwn.Arn
+      Runtime: "nodejs8.10"
+      Handler: "index.handler"
+      Timeout: 8
+      MemorySize: 128
+      Environment:
+        Variables:
+          Parameter____: !Ref Parameter____
+      Code:
+        ZipFile: | 
+          // Require statements.
+          const aws = require("aws-sdk");
+          
+          // Lambda handler.
+          exports.handler = (event, context, callback) => {
+            
+            // Create a Connect object.
+            const ____ = new aws.____();
+            
+            // Set parameters based on environment and event data.
+            let params = {
+                Parameter____: process.env["Parameter____"],
+                DestinationPhoneNumber: event.approved
+            }
+            
+            // Start outbound contact.
+            ____.function____(params, function (err, data) {
+              if (err) {
+                console.log(err, err.stack); 
+                callback(1);
+                return;
+              }
+              else {
+                console.log(data);
+                callback(null, data);
+                return;
+              }
+            });
+          }
+  Lambda____2:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Description: ""
+      Role: !GetAtt RoleExecuteOwn.Arn
+      Runtime: "nodejs8.10"
+      Handler: "index.handler"
+      Timeout: 8
+      MemorySize: 128
+      Environment:
+        Variables:
+          Parameter____: !Ref Parameter____
+      Code:
+        ZipFile: | 
+          // Require statements.
+          const aws = require("aws-sdk");
+          
+          // Lambda handler.
+          exports.handler = (event, context, callback) => {
+            
+            // Create a Connect object.
+            const ____ = new aws.____();
+            
+            // Set parameters based on environment and event data.
+            let params = {
+                Parameter____: process.env["Parameter____"],
+                DestinationPhoneNumber: event.approved
+            }
+            
+            // Start outbound contact.
+            ____.function____(params, function (err, data) {
+              if (err) {
+                console.log(err, err.stack); 
+                callback(1);
+                return;
+              }
+              else {
+                console.log(data);
+                callback(null, data);
+                return;
+              }
+            });
+          }
+Outputs:
+  VMVendStartOutput:
+    Description: "ARN Machine Start "
+    Value: !GetAtt VMVendStart.Arn
