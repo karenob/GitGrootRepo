@@ -105,7 +105,8 @@ export class ServerRequestComponent extends Savable {
             PrimaryDrive: "",
             SecondaryDrive: "",
             ServerOS: "",
-            Email: ""
+            Email: "",
+            ApproverEmail: ""
         });
     }
 
@@ -160,7 +161,7 @@ export class ServerRequestComponent extends Savable {
             }
         });
     }
-    
+
     private showConfirmationModal() {
 
     }
@@ -168,6 +169,7 @@ export class ServerRequestComponent extends Savable {
     private submitForm() {
         if (!super.validate(this.ServerRequestForm, document.querySelector('#ServerRequestForm'))) return;
         let submitCommand = {
+            type: "create",
             serverType: this.selectedServerType,
             memoryCpu: this.selectedList2,
             purpose: this.ServerRequestForm.controls.Purpose.value,
@@ -176,11 +178,12 @@ export class ServerRequestComponent extends Savable {
             primaryDrive: this.selectedPrimaryDrive,
             secondaryDrive: this.ServerRequestForm.controls.SecondaryDrive.value,
             serverOS: this.selectedServerOS,
-            email: this.ServerRequestForm.controls.Email.value
+            email: this.ServerRequestForm.controls.Email.value,
+            approverEmail: this.ServerRequestForm.controls.ApproverEmail.value
         }
 
         this.selectedSecondaryDesc = this.ServerRequestForm.controls.SecondaryDrive.value + "GB";
-        
+
         let _url = 'https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/check';
         let headerKey = 'x-api-key:BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV';
         let reidObj = {
@@ -188,17 +191,21 @@ export class ServerRequestComponent extends Savable {
         }
         let reidStuff = 'executionArn":"arn:aws:states:us-east-1:238450819322:execution: vmvendingmachine: 1f843ef4-c660-4257-9399-d55011f3d7b8';
         let request = new XMLHttpRequest();
+        let responseFromAws: string;
 
-        function requestOnLoad() {
-            console.log(this.responseText);
-        }
-        request.addEventListener("load", requestOnLoad);
-        request.open("GET", "https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/start");
-        request.setRequestHeader("x-api-key", "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV");
-        
-        request.send();
+        //Reid's first suggestion
+        //function requestOnLoad() {
+        //    console.log(this.responseText);
+        //}
+        //request.addEventListener("load", requestOnLoad);
+        //request.open("GET", "https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/start");
+        //request.setRequestHeader("x-api-key", "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV");
 
-        
+        //request.send();
+
+
+
+        //Have to figure out headers here
         //this.ajax.post(_url, reidObj,
         //    data => {
         //        this.saved();
@@ -213,21 +220,45 @@ export class ServerRequestComponent extends Savable {
 
 
         //Or, we can try this:       
-        var headers = new Headers();
-        headers.append('x-api-key', 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV');
+        //var headers = new Headers();
+        //headers.append('x-api-key', 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV');
 
-        this.http
-            .post(_url,
-                submitCommand, {
-                    headers: headers
-                })
-            .subscribe(data => {
-                alert('ok');
-            }, error => {
-                console.log(JSON.stringify(error.json()));
-            });
+        //this.http
+        //    .post(_url,
+        //        submitCommand, {
+        //            headers: headers
+        //        })
+        //    .subscribe(data => {
+        //        alert('ok');
+        //    }, error => {
+        //        console.log(JSON.stringify(error.json()));
+        //    });
 
+        this.postWithFetch(_url, headerKey, submitCommand);
+
+
+        //THis shows the confirmation page
         this.showMessage = true;
+    }
+
+    //Reid's second suggestion
+    postWithFetch(url, key, data) {
+        // Default options are marked with *
+        return fetch(url, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, cors, *same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, same-origin, *omit
+            headers: {
+                "x-api-key": key,
+                "Content-Type": "application/json; charset=utf-8",
+                // "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: "follow", // manual, *follow, error
+            referrer: "no-referrer", // no-referrer, *client
+            body: JSON.stringify(data), // body data type must match "Content-Type" header
+        })
+            .then(response => response.json()); // parses response to JSON
     }
 }
 

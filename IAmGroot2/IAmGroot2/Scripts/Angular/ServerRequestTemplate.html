@@ -95,17 +95,29 @@
                     </div>
                 </div>
             </div>
-            <div class="row" *ngIf="selectedServerOS != ''">
-                <div class="form-group col-md-3">
+            <div class="row">
+                <div class="form-group col-md-3" *ngIf="selectedServerOS != ''">
                     <tooltipComponent [controlRef]="ServerRequestForm.controls.Email" elementId="emailHtmlId" message="Email is required." errorType="required"></tooltipComponent>
                     <tooltipComponent [controlRef]="ServerRequestForm.controls.Email" elementId="emailHtmlId" message="Email format is invalid." errorType="pattern"></tooltipComponent>
-                    <div><label for="emailHtmlId" class="control-label">Email<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                    <div><label for="emailHtmlId" class="control-label">Requester Email<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
                     <div class="inner-addon right-addon">
                         <input id="emailHtmlId" type="text" class="form-control" maxlength="50"
-                               formControlName="Email" [controlRef]="ServerRequestForm.controls.Email" name="emailHtmlId" 
+                               formControlName="Email" [controlRef]="ServerRequestForm.controls.Email" name="emailHtmlId"
                                validation
                                [patternValidator]="emailPattern" [requiredValidator]="true" />
                         <i *ngIf="ServerRequestForm.controls.Email.valid == false && ServerRequestForm.controls.Email.touched == true" class="form-control-feedback glyphicon glyphicon-exclamation-sign glyphicon-error"></i>
+                    </div>
+                </div>
+                <div class="form-group col-md-3" *ngIf="ServerRequestForm.controls.Email.value != ''">
+                    <tooltipComponent [controlRef]="ServerRequestForm.controls.ApproverEmail" elementId="ApproverEmailHtmlId" message="Approver Email is required." errorType="required"></tooltipComponent>
+                    <tooltipComponent [controlRef]="ServerRequestForm.controls.ApproverEmail" elementId="ApproverEmailHtmlId" message="Approver Email format is invalid." errorType="pattern"></tooltipComponent>
+                    <div><label for="ApproverEmailHtmlId" class="control-label">Approver Email<i class="glyphicon glyphicon-asterisk glyphicon-required"></i></label></div>
+                    <div class="inner-addon Approver-addon">
+                        <input id="ApproverEmailHtmlId" type="text" class="form-control" maxlength="50"
+                               formControlName="ApproverEmail" [controlRef]="ServerRequestForm.controls.ApproverEmail" name="ApproverEmailHtmlId"
+                               validation
+                               [patternValidator]="emailPattern" [requiredValidator]="true" />
+                        <i *ngIf="ServerRequestForm.controls.ApproverEmail.valid == false && ServerRequestForm.controls.ApproverEmail.touched == true" class="form-control-feedback glyphicon glyphicon-exclamation-sign glyphicon-error"></i>
                     </div>
                 </div>
             </div>
@@ -125,7 +137,7 @@
                     <h4>Server Request Submitted Successfully</h4>
                     <label>
                         <b>Thank you for your request.</b><br />
-                        Your information will be reviewed by management.  
+                        Your information will be reviewed by management.
                     </label>
                 </div>
             </div>
@@ -143,7 +155,7 @@
                     <fieldDetailComponent label="Secondary Drive" [value]="selectedSecondaryDesc"></fieldDetailComponent>
                     <fieldDetailComponent label="Operating System" [value]="selectedServerOSDesc"></fieldDetailComponent>
                     <fieldDetailComponent label="Requested By" [value]="this.ServerRequestForm.controls.Email.value"></fieldDetailComponent>
-                </div>               
+                </div>
             </div>
         </div>
     </div>
