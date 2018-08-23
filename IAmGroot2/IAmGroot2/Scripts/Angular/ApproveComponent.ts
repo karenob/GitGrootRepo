@@ -3,26 +3,28 @@
 import { NgModule, Component } from '@angular/core';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { HttpModule } from '@angular/http';
+import { Inject, ElementRef, FieldDetailComponent } from './SWBC.Components';
 
 @Component({
     selector: 'approveComponent',
-    templateUrl: '/Scripts/Angular/ApproveComponent.html'
+    templateUrl: '/Scripts/Angular/ApproveTemplate.html'
 })
 export class ApproveComponent {
-    constructor() { }
-
-    name: string = 'Angular2 - Jackie';
-
+    private activityToken: string;
+    constructor(@Inject(ElementRef) elm: ElementRef)
+    {
+        this.activityToken = elm.nativeElement.getAttribute('activityToken');
+    }
 }
 
 @NgModule({
     imports: [
-        BrowserModule,
-        HttpModule
+        BrowserModule
+      
     ],
     declarations: [
-        ApproveComponent
+        ApproveComponent,
+        FieldDetailComponent
     ],
     entryComponents: [ApproveComponent],
     bootstrap: [ApproveComponent],
