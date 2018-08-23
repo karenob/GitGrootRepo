@@ -145,7 +145,8 @@
         <h5>Server Request Details</h5>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-6 view">
+                <div class="col-md-12 view">                   
+                    <fieldDetailComponent label="Amazon Resource Name" [value]="myExecutionArn"></fieldDetailComponent>
                     <fieldDetailComponent label="Server Type" [value]="selectedServerTypeDesc"></fieldDetailComponent>
                     <fieldDetailComponent label="PCI/HIPAA Compliance" [value]="selectedComplianceDesc"></fieldDetailComponent>
                     <fieldDetailComponent label="Function" [value]="ServerRequestForm.controls.Purpose.value"></fieldDetailComponent>

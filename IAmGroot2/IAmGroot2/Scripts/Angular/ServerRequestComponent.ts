@@ -247,7 +247,7 @@ export class ServerRequestComponent extends Savable {
         //    });
 
         // Test workflow. Run each function call one at a time to give the previous one time to complete.
-        let apiURL = 'https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/start'
+        let apiURL = 'https://vmvendingmachineapi.cloudandinnovation.com/start'
         let apiKey = 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV'
         let headerKey = 'x-api-key:BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV';
         
@@ -257,7 +257,6 @@ export class ServerRequestComponent extends Savable {
         this.postWithFetch(apiURL, apiKey, submitCommand)
             .then(function(data) {
             _me.myExecutionArn = data.executionArn;
-            _me.myActivityArn = data.activityArn;
             console.log(data)
             })
             .catch (error => console.error(error));
@@ -271,18 +270,17 @@ export class ServerRequestComponent extends Savable {
     postWithFetch(url, key, data) {
         // Default options are marked with *
         return fetch(url, {
-            method: "GET", // *GET, POST, PUT, DELETE, etc.
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             credentials: "same-origin", // include, same-origin, *omit
             headers: {
                 "x-api-key": "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV",
                 "Content-Type": "application/json; charset=utf-8",
-                // "Content-Type": "application/x-www-form-urlencoded",
             },
             redirect: "follow", // manual, *follow, error
-            referrer: "no-referrer" // no-referrer, *client
-            //body: JSON.stringify(data), // body data type must match "Content-Type" header
+            referrer: "no-referrer", // no-referrer, *client
+            body: JSON.stringify(data), // body data type must match "Content-Type" header
         })
             .then(response => response.json()); // parses response to JSON
     }

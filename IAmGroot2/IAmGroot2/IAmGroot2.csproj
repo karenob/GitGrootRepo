@@ -171,6 +171,7 @@
     <Content Include="gulpfile.js" />
     <Content Include="Images\Groot.jpg" />
     <Content Include="Scripts\Angular\ApproveTemplate.html" />
+    <Content Include="Scripts\Angular\ListVMTemplate.html" />
     <Content Include="Scripts\Angular\ServerRequestTemplate.html" />
     <Content Include="Scripts\Angular\LoginComponent.html" />
     <Content Include="Scripts\bootstrap.js" />
@@ -212,6 +213,7 @@
     <Content Include="typings\globals\es6-shim\typings.json" />
     <Content Include="Views\Shared\_ApplicationLayout.cshtml" />
     <Content Include="Views\Home\Approve.cshtml" />
+    <Content Include="Views\Home\ListVM.cshtml" />
     <None Include="Views\Home\ServerRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +235,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\Angular\ApproveComponent.ts" />
+    <TypeScriptCompile Include="Scripts\Angular\IVMSpecifications.ts" />
+    <TypeScriptCompile Include="Scripts\Angular\ListVMComponent.ts" />
     <TypeScriptCompile Include="Scripts\Angular\ServerRequestComponent.ts" />
     <TypeScriptCompile Include="Scripts\Angular\LoginComponent.ts" />
     <TypeScriptCompile Include="Scripts\Angular\SWBC.Components.ts" />

@@ -1,0 +1,19 @@
+﻿@using IAmGroot2.Extensions;
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
+}
+
+
+<listVMComponent></listVMComponent>
+@section Scripts{
+    @if (Html.IsRelease())
+    {
+        <script src="~/Scripts/bundles/ListVMComponent.min.js"></script>
+    }
+    else
+    {
+        <script type="text/javascript">System.import('Scripts/Angular/ListVMComponent');</script>
+    }
+}
+
