@@ -180,9 +180,26 @@ export class ServerRequestComponent extends Savable {
         }
 
         this.selectedSecondaryDesc = this.ServerRequestForm.controls.SecondaryDrive.value + "GB";
+        
+        let _url = 'https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/check';
+        let headerKey = 'x-api-key:BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV';
+        let reidObj = {
+            executionArn: "arn:aws:states:us-east-1:238450819322:execution: vmvendingmachine: 1f843ef4-c660-4257-9399-d55011f3d7b8"
+        }
+        let reidStuff = 'executionArn":"arn:aws:states:us-east-1:238450819322:execution: vmvendingmachine: 1f843ef4-c660-4257-9399-d55011f3d7b8';
+        let request = new XMLHttpRequest();
 
-        //let _url = '/home/contact';
-        //this.ajax.post(_url, submitCommand,
+        function requestOnLoad() {
+            console.log(this.responseText);
+        }
+        request.addEventListener("load", requestOnLoad);
+        request.open("GET", "https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/start");
+        request.setRequestHeader("x-api-key", "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV");
+        
+        request.send();
+
+        
+        //this.ajax.post(_url, reidObj,
         //    data => {
         //        this.saved();
         //        this.ServerRequestForm.markAsPristine();
@@ -193,6 +210,23 @@ export class ServerRequestComponent extends Savable {
         //        //this.errorWindowOverlayComponent.show();
         //    }
         //);
+
+
+        //Or, we can try this:       
+        var headers = new Headers();
+        headers.append('x-api-key', 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV');
+
+        this.http
+            .post(_url,
+                submitCommand, {
+                    headers: headers
+                })
+            .subscribe(data => {
+                alert('ok');
+            }, error => {
+                console.log(JSON.stringify(error.json()));
+            });
+
         this.showMessage = true;
     }
 }
