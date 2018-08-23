@@ -56,26 +56,26 @@ export class ServerRequestComponent extends Savable {
         ];
         this.compliance = [
             { Description: '--Select--', Value: '' },
-            { Description: 'Yes', Value: 'Y' },
-            { Description: 'No', Value: 'N' }
+            { Description: 'Yes', Value: 'Yes' },
+            { Description: 'No', Value: 'No' }
 
         ];
         this.list2 = [
             { Description: '--Select--', Value: '' },
-            { Description: 'Tiny: 2 CPUs, 4GB RAM', Value: 't2.medium' },
-            { Description: 'Small: 2 CPUs, 8GB RAM', Value: 't2.large' },
-            { Description: 'Medium: 4 CPUs, 16GB RAM', Value: 't2.xlarge' },
-            { Description: 'Large: 8 CPUs, 32GB RAM', Value: 't2.2xlarge' }
+            { Description: 'Tiny: 2 CPUs, 4GB RAM', Value: 'Tiny: 2 CPUs, 4GB RAM' },
+            { Description: 'Small: 2 CPUs, 8GB RAM', Value: 'Small: 2 CPUs, 8GB RAM' },
+            { Description: 'Medium: 4 CPUs, 16GB RAM', Value: 'Medium: 4 CPUs, 16GB RAM' },
+            { Description: 'Large: 8 CPUs, 32GB RAM', Value: 'Large: 8 CPUs, 32GB RAM' }
 
         ];
 
         this.serverEnvironment = [
             { Description: '--Select--', Value: '' },
-            { Description: 'Dev', Value: 'D' },
-            { Description: 'Unit Test', Value: 'U' },
+            { Description: 'Dev', Value: 'Dev' },
+            { Description: 'Unit Test', Value: 'Unit Test' },
             { Description: 'QA', Value: 'QA' },
-            { Description: 'Beta', Value: 'B' },
-            { Description: 'Prod', Value: 'P' }
+            { Description: 'Beta', Value: 'Beta' },
+            { Description: 'Prod', Value: 'Prod' }
         ];
 
         this.purpose = [
@@ -93,10 +93,10 @@ export class ServerRequestComponent extends Savable {
 
         this.serverOS = [
             { Description: '--Select--', Value: '' },
-            { Description: 'Windows Server 2012 R2', Value: 'Windows2012R2' },
-            { Description: 'Windows Server 2016', Value: 'Windows2016' },
-            { Description: 'Linux 6.0', Value: 'Linux6.0' },
-            { Description: 'Linux 7.0', Value: 'Linux7.0' }
+            { Description: 'Windows Server 2012 R2', Value: 'Windows Server 2012 R2' },
+            { Description: 'Windows Server 2016', Value: 'Windows Server 2016' },
+            { Description: 'Linux 6.0', Value: 'Linux 6.0' },
+            { Description: 'Linux 7.0', Value: 'Linux 7.0' }
         ];
 
         this.ServerRequestForm = this.formBuilder.group({
