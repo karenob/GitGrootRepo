@@ -1,4 +1,4 @@
-﻿/// <amd-module name="/Scripts/Angular/LoginComponent" />
+﻿/// <amd-module name="/Scripts/Angular/ApproveComponent" />
 
 import { NgModule, Component } from '@angular/core';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
@@ -6,10 +6,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { HttpModule } from '@angular/http';
 
 @Component({
-    selector: 'loginComponent',
-    templateUrl: '/Scripts/Angular/LoginComponent.html'
+    selector: 'approveComponent',
+    templateUrl: '/Scripts/Angular/ApproveComponent.html'
 })
-export class LoginComponent {
+export class ApproveComponent {
     constructor() { }
 
     name: string = 'Angular2 - Jackie';
@@ -22,11 +22,11 @@ export class LoginComponent {
         HttpModule
     ],
     declarations: [
-        LoginComponent
+        ApproveComponent
     ],
-    entryComponents: [LoginComponent],
-    bootstrap: [LoginComponent],
+    entryComponents: [ApproveComponent],
+    bootstrap: [ApproveComponent],
     providers: [{ provide: Window, useValue: window }]
 })
-export class LoginModule { }
-platformBrowserDynamic().bootstrapModule(LoginModule);
+export class ApproveModule { }
+platformBrowserDynamic().bootstrapModule(ApproveModule);

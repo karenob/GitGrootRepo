@@ -1,5 +1,10 @@
 ﻿<div>
     <h4>
-        <a href="/home/ServerRequest">Request New Server</a>
+        <a href="/home/ServerRequest">New Server Requested</a>
     </h4>
 </div>
+<div class="text-right">
+    <button type="button" class="btn btn-secondary" id="btnClose" (click)="resetForm(ServerRequestForm)">Approve</button>
+    <button type="button" class="btn btn-primary" value="Submit" name="Submit" id="btnSubmit" (click)="submitForm()">DENY!</button>
+</div>
+<!--approve button, deny button, verbiage with what is being approved/denied-->
