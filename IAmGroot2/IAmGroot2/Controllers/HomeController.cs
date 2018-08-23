@@ -25,14 +25,12 @@ namespace IAmGroot2.Controllers
             return View();
         }
 
-        //public ActionResult Contact()
-        //{
-        //    ViewBag.Message = "Your contact page.";
+        public ActionResult ListVM()
+        {
+            return View();
+        }
 
-        //    return View();
-        //}
 
-    
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
