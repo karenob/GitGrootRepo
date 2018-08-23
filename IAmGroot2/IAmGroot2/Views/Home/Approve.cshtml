@@ -1,0 +1,18 @@
+﻿@using IAmGroot2.Extensions;
+@{
+    ViewBag.Title = "Home Page";
+    string activityToken = ViewBag.activityToken;
+    Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
+}
+<approveComponent activityToken="@activityToken"></approveComponent>
+@section Scripts{
+    @if (Html.IsRelease())
+    {
+        <script src="~/Scripts/bundles/ApproveComponent.min.js"></script>
+    }
+    else
+    {
+        <script type="text/javascript">System.import('Scripts/Angular/ApproveComponent');</script>
+    }
+}
+

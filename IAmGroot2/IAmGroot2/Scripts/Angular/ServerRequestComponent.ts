@@ -36,10 +36,13 @@ export class ServerRequestComponent extends Savable {
     selectedServerOSDesc = "";
     selectedPrimaryDriveDesc = "";
     selectedComplianceDesc = "";
+    myExecutionArn: string;
+    myActivityArn: string;
+    responseFromAws: string;
 
     constructor(@Inject(Window) private window: any,
         private formBuilder: FormBuilder,
-        private ajax: AjaxService, ) {
+        private ajax: AjaxService) {
         super();
         this.createForm();
     }
@@ -170,22 +173,23 @@ export class ServerRequestComponent extends Savable {
         if (!super.validate(this.ServerRequestForm, document.querySelector('#ServerRequestForm'))) return;
         let submitCommand = {
             type: "create",
-            serverType: this.selectedServerType,
-            memoryCpu: this.selectedList2,
-            purpose: this.ServerRequestForm.controls.Purpose.value,
-            compliance: this.selectedCompliance,
-            environment: this.selectedServerEnvironment,
-            primaryDrive: this.selectedPrimaryDrive,
-            secondaryDrive: this.ServerRequestForm.controls.SecondaryDrive.value,
-            serverOS: this.selectedServerOS,
+            approverEmail: this.ServerRequestForm.controls.ApproverEmail.value,
             email: this.ServerRequestForm.controls.Email.value,
-            approverEmail: this.ServerRequestForm.controls.ApproverEmail.value
+            serverDetails: {
+                serverType: this.selectedServerType,
+                memoryCpu: this.selectedList2,
+                purpose: this.ServerRequestForm.controls.Purpose.value,
+                compliance: this.selectedCompliance,
+                environment: this.selectedServerEnvironment,
+                primaryDrive: this.selectedPrimaryDrive,
+                secondaryDrive: this.ServerRequestForm.controls.SecondaryDrive.value,
+                serverOS: this.selectedServerOS
+            }
+            
         }
 
         this.selectedSecondaryDesc = this.ServerRequestForm.controls.SecondaryDrive.value + "GB";
 
-        let _url = 'https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/check';
-        let headerKey = 'x-api-key:BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV';
         let reidObj = {
             executionArn: "arn:aws:states:us-east-1:238450819322:execution: vmvendingmachine: 1f843ef4-c660-4257-9399-d55011f3d7b8"
         }
@@ -197,6 +201,14 @@ export class ServerRequestComponent extends Savable {
         //function requestOnLoad() {
         //    console.log(this.responseText);
         //}
+
+        //let _me2 = this;
+        //request.onreadystatechange = function () {
+        //    if (request.readyState === 4) {
+        //        _me2.responseFromAws = request.responseText;
+        //    }
+        //}
+
         //request.addEventListener("load", requestOnLoad);
         //request.open("GET", "https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/start");
         //request.setRequestHeader("x-api-key", "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV");
@@ -234,7 +246,21 @@ export class ServerRequestComponent extends Savable {
         //        console.log(JSON.stringify(error.json()));
         //    });
 
-        this.postWithFetch(_url, headerKey, submitCommand);
+        // Test workflow. Run each function call one at a time to give the previous one time to complete.
+        let apiURL = 'https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/start'
+        let apiKey = 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV'
+        let headerKey = 'x-api-key:BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV';
+        
+        let isApproved = true;
+
+        let _me = this;
+        this.postWithFetch(apiURL, apiKey, submitCommand)
+            .then(function(data) {
+            _me.myExecutionArn = data.executionArn;
+            _me.myActivityArn = data.activityArn;
+            console.log(data)
+            })
+            .catch (error => console.error(error));
 
 
         //THis shows the confirmation page
@@ -245,18 +271,18 @@ export class ServerRequestComponent extends Savable {
     postWithFetch(url, key, data) {
         // Default options are marked with *
         return fetch(url, {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            method: "GET", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             credentials: "same-origin", // include, same-origin, *omit
             headers: {
-                "x-api-key": key,
+                "x-api-key": "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV",
                 "Content-Type": "application/json; charset=utf-8",
                 // "Content-Type": "application/x-www-form-urlencoded",
             },
             redirect: "follow", // manual, *follow, error
-            referrer: "no-referrer", // no-referrer, *client
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
+            referrer: "no-referrer" // no-referrer, *client
+            //body: JSON.stringify(data), // body data type must match "Content-Type" header
         })
             .then(response => response.json()); // parses response to JSON
     }

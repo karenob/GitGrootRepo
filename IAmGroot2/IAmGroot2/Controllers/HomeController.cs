@@ -19,6 +19,12 @@ namespace IAmGroot2.Controllers
             return View();
         }
 
+        public ActionResult Approve(string activityToken)
+        {
+            ViewBag.ActivityToken = activityToken;
+            return View();
+        }
+
         //public ActionResult Contact()
         //{
         //    ViewBag.Message = "Your contact page.";
