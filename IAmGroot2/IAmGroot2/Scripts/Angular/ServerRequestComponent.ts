@@ -174,7 +174,7 @@ export class ServerRequestComponent extends Savable {
         let submitCommand = {
             type: "create",
             approverEmail: this.ServerRequestForm.controls.ApproverEmail.value,
-            email: this.ServerRequestForm.controls.Email.value,
+            requesterEmail: this.ServerRequestForm.controls.Email.value,
             serverDetails: {
                 serverType: this.selectedServerType,
                 memoryCpu: this.selectedList2,
