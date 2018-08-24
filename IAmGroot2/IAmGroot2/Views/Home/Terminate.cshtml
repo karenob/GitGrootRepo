@@ -1,0 +1,18 @@
+﻿@using IAmGroot2.Extensions;
+@{
+    ViewBag.Title = "Home Page";
+    string activityToken = ViewBag.activityToken;
+    Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
+}
+<terminateComponent activityToken="@taskToken"></terminateComponent>
+@section Scripts{
+    @if (Html.IsRelease())
+    {
+        <script src="~/Scripts/bundles/TerminateComponent.min.js"></script>
+    }
+    else
+    {
+        <script type="text/javascript">System.import('Scripts/Angular/TerminateComponent');</script>
+    }
+}
+

@@ -170,6 +170,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="gulpfile.js" />
     <Content Include="Images\Groot.jpg" />
+    <Content Include="Scripts\Angular\TerminateTemplate.html" />
     <Content Include="Scripts\Angular\ApproveTemplate.html" />
     <Content Include="Scripts\Angular\ListVMTemplate.html" />
     <Content Include="Scripts\Angular\ServerRequestTemplate.html" />
@@ -214,6 +215,7 @@
     <Content Include="Views\Shared\_ApplicationLayout.cshtml" />
     <Content Include="Views\Home\Approve.cshtml" />
     <Content Include="Views\Home\ListVM.cshtml" />
+    <Content Include="Views\Home\Terminate.cshtml" />
     <None Include="Views\Home\ServerRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +236,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Angular\TerminateComponent.ts" />
     <TypeScriptCompile Include="Scripts\Angular\ApproveComponent.ts" />
     <TypeScriptCompile Include="Scripts\Angular\IVMSpecifications.ts" />
     <TypeScriptCompile Include="Scripts\Angular\ListVMComponent.ts" />

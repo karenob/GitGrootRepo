@@ -1,0 +1,15 @@
+﻿<form>
+    <div *ngIf="!result">
+        <div>
+            <h4>
+                <b> Click below to terminate VM: </b>
+            </h4>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" id="btnApprove" (click)="terminateVM()">Terminate</button>
+        </div>
+    </div>
+    <div *ngIf="result">
+        {{ messageText }}
+    </div>
+</form>
