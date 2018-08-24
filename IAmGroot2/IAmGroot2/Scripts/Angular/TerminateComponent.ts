@@ -10,13 +10,13 @@ import { Inject, ElementRef, FieldDetailComponent } from './SWBC.Components';
     templateUrl: '/Scripts/Angular/TerminateTemplate.html'
 })
 export class TerminateComponent {
-    private taskToken: string;
+    private taskToken: any;
     private _Url = 'https://vmvendingmachineapi.cloudandinnovation.com/terminate';
     private result = false;
     private messageText: string;
     constructor(@Inject(ElementRef) elm: ElementRef)
     {
-        this.taskToken = elm.nativeElement.getAttribute('taskToken');
+        this.taskToken = { taskToken: elm.nativeElement.getAttribute('taskToken') };
     }
 
     terminateVM() {

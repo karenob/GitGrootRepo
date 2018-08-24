@@ -30,9 +30,9 @@ namespace IAmGroot2.Controllers
             return View();
         }
 
-        public ActionResult Terminate(string activityToken)
+        public ActionResult Terminate(string taskToken)
         {
-            ViewBag.ActivityToken = activityToken;
+            ViewBag.TaskToken = taskToken;
             return View();
         }
 
