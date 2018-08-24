@@ -30,6 +30,12 @@ namespace IAmGroot2.Controllers
             return View();
         }
 
+        public ActionResult Terminate(string taskToken)
+        {
+            ViewBag.TaskToken = taskToken;
+            return View();
+        }
+
 
         public ActionResult Contact()
         {
