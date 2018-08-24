@@ -52,7 +52,7 @@ export class ServerRequestComponent extends Savable {
             { Description: '--Select--', Value: '' },
             { Description: 'AWS', Value: 'AWS' },
             { Description: 'Azure', Value: 'AZURE' }
-
+            { Description: 'Stream Data Center', Value: 'Stream Data Center' }
         ];
         this.compliance = [
             { Description: '--Select--', Value: '' },
