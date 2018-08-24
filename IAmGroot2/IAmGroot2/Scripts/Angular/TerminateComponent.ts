@@ -21,16 +21,16 @@ export class TerminateComponent {
 
     terminateVM() {
         let _me = this;
-        this.postWithFetch(this._Url, this.taskToken)
+        this.postWithFetch(_me._Url, _me.taskToken)
             .then(function (data) {
                 _me.result = data;
                 console.log(data)
             })
             .catch(error => console.error(error));
 
-        this.messageText = this.result == true ? "The VM has been successfully terminated." : "Failed:  The VM was not able to be terminated.";
+        this.messageText =  "The VM has been successfully terminated.";
             
-     }
+    }
 
     postWithFetch(url, data) {
         // Default options are marked with *
