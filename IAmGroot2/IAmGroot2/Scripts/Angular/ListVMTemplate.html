@@ -3,19 +3,17 @@
     <div class="display-table" style="width: 100%">
         <div class="display-table-row notifications-modal-header">
             <div class="display-table-cell">Execution Arn</div>
-            <div class="display-table-cell">Requestor Email</div>
-            <div class="display-table-cell">Approver Email</div>
-            <div class="display-table-cell">Instance Id</div>
-            <div class="display-table-cell">Machine Name</div>
-            <div class="display-table-cell">VM Specs</div>
+            <div class="display-table-cell">State Machine Arn</div>
+            <div class="display-table-cell">Status</div>
+            <div class="display-table-cell">Start Date</div>
+            <div class="display-table-cell">Name</div>
         </div>
         <div class="display-table-row" *ngFor="let item of vmSpecification?.stateMachines;let even = even; let odd = odd" [ngClass]="{odd: odd, even: even }">
             <div class="display-table-cell">{{ item.executionArn }} /></div>
-            <div class="display-table-cell display-table-cell-alternate text-left">{{ item.requestorEmail }}</div>
-            <div class="display-table-cell">{{ item.approverEmail}}</div>
-            <div class="display-table-cell display-table-cell-alternate text-left">{{ item.instanceID }}</div>
-            <div class="display-table-cell">{{ item.machineName}}</div>
-            <div class="display-table-cell display-table-cell-alternate text-left">specs may go here</div>
+            <div class="display-table-cell display-table-cell-alternate text-left">{{ item.stateMachineArn }}</div>
+            <div class="display-table-cell">{{ item.status}}</div>
+            <div class="display-table-cell display-table-cell-alternate text-left">{{ item.startDate }}</div>
+            <div class="display-table-cell">{{ item.name}}</div>
         </div>
     </div>
 
