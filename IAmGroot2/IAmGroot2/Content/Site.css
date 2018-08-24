@@ -29,3 +29,26 @@ h3 {
     float: left;
     width: 100%
 }
+
+.redBtn {
+    background-color:#c20606;
+    color: #ffffff;
+    -webkit-box-shadow: 0 1px 2px #333;
+    -moz-box-shadow: 0 1px 2px #333;
+    box-shadow: 0 1px 2px #333;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-appearance: button;
+    cursor: pointer;
+    font-weight: 400;
+    min-width: 100px;
+    display: inline-block;
+    padding: 8px 15px;
+    margin-bottom: 0;
+    margin-left: 7px;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid transparent
+}

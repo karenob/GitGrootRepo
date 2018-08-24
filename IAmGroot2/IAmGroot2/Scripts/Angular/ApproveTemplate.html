@@ -5,31 +5,32 @@
         </h1>
     </div>
 
-
-
+    <div>
         <div>
-            <div>
-                <h4>
-                    <label>
-                        <br />
-                        Server Type: AWS<br />
-                        PCI/HIPAA Compliance: Yes<br />
-                        Function: Top Secret Information<br />
-                        Server Environment:  Prod <br />
-                        Memory/CPU: Small: 2 CPUs, 8GB RAM<br />
-                        Primary Drive: 127GB<br />
-                        Secondary Drive: 32<br />
-                        Operating System: Linux 7.0<br />
-                        Requested By: IAMGROOT@swbc.com<br />
-                    </label>
-                </h4>
-            </div>
+            <h4>
+                <label>
+                    <br />
+                    Server Type: AWS<br />
+                    PCI/HIPAA Compliance: Yes<br />
+                    Function: Top Secret Information<br />
+                    Server Environment:  Prod <br />
+                    Memory/CPU: Small: 2 CPUs, 8GB RAM<br />
+                    Primary Drive: 127GB<br />
+                    Secondary Drive: 32<br />
+                    Operating System: Linux 7.0<br />
+                    Requested By: IAMGROOT@swbc.com<br />
+                </label>
+            </h4>
         </div>
+    </div>
 
-        <div class="text-right">
-            <button type="button" class="btn btn-primary" id="btnApprove">Approve</button>
-            <button type="button" class= "btn btn-secondary" value="Deny" name="Deny" id="btnDeny">DENY!</button>
-        </div>
+     <div *ngIf="!result">
+        <button type="button" class="btn btn-primary" id="btnApprove" (click)="approve()">Approve</button>
+        <button class="redBtn" value="Deny" name="Deny" id="btnDeny" (click)="deny()">DENY!</button>
+    </div>
+    <div *ngIf="result">
+        <h2> <label>{{ messageText }}</label></h2>
+    </div>
+
 
 </form>
-<!--approve button, deny button, verbiage with what is being approved/denied-->
