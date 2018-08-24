@@ -19,9 +19,9 @@ namespace IAmGroot2.Controllers
             return View();
         }
 
-        public ActionResult Approve(string activityToken)
+        public ActionResult Approve(string taskToken)
         {
-            ViewBag.ActivityToken = activityToken;
+            ViewBag.TaskToken = taskToken;
             return View();
         }
 

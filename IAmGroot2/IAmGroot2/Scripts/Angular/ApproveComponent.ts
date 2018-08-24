@@ -12,7 +12,7 @@ import { Inject, ElementRef, FieldDetailComponent } from './SWBC.Components';
     templateUrl: '/Scripts/Angular/ApproveTemplate.html'
 })
 export class ApproveComponent {
-    private activityToken: string;
+    private taskToken: string;
     private apiURL = "https://vmvendingmachineapi.cloudandinnovation.com/approve";
     apiKey = 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV';
     submitCommand: any;
@@ -23,41 +23,43 @@ export class ApproveComponent {
 
     constructor(@Inject(ElementRef) elm: ElementRef)
     {
-        this.activityToken = elm.nativeElement.getAttribute('activityToken');
+        this.taskToken = elm.nativeElement.getAttribute('taskToken');
     }
 
 
     approve() {
         this.submitCommand = {
-            activityToken: this.activityToken,
+            taskToken: this.taskToken,
             approved: true
         }
         let _me = this;
-        //this.postWithFetch(_me.apiURL, _me.apiKey, _me.submitCommand)
-        //    .then(function (data) {
-        //        _me.result = data;
-        //        console.log(data)
-        //    })
+        this.postWithFetch(_me.apiURL, _me.apiKey, _me.submitCommand)
+            .then(function (data) {
+                _me.result = data;
+                console.log(data)
+            })
+            .catch(error => console.error(error));
 
         _me.messageText = "The server request has been approved."
         _me.result = true;
-           // .catch(error => console.error(error));
+          
     }
 
     deny() {
         this.submitCommand = {
-            activityToken: this.activityToken,
+            taskToken: this.taskToken,
             approved: false
         }
         let _me = this;
-        //this.postWithFetch(_me.apiURL, _me.apiKey, _me.submitCommand)
-        //    .then(function (data) {
-        //        _me.result = data;
-        //        console.log(data)
-        //    })
+        this.postWithFetch(_me.apiURL, _me.apiKey, _me.submitCommand)
+            .then(function (data) {
+                _me.result = data;
+                console.log(data)
+            })
+            .catch(error => console.error(error));
         _me.messageText = "The server request has been denied."
         _me.result = true;
-           // .catch(error => console.error(error));
+            
     }
 
 //Reid's second suggestion

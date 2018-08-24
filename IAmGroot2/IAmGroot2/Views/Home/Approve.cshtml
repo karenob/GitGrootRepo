@@ -1,10 +1,10 @@
 ﻿@using IAmGroot2.Extensions;
 @{
     ViewBag.Title = "Home Page";
-    string activityToken = ViewBag.activityToken;
+    string taskToken = ViewBag.TaskToken;
     Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
 }
-<approveComponent activityToken="@activityToken"></approveComponent>
+<approveComponent taskToken="@taskToken"></approveComponent>
 @section Scripts{
     @if (Html.IsRelease())
     {
