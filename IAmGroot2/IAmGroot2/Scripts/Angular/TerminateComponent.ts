@@ -40,7 +40,7 @@ export class TerminateComponent {
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             credentials: "same-origin", // include, same-origin, *omit
             headers: {
-                "x-api-key": "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV",
+                "x-api-key": "sbfaoxwYcYaxcB9MZmpnR69RB0ojM3Ne92KcDN2Q",
                 "Content-Type": "application/json; charset=utf-8",
             },
             redirect: "follow", // manual, *follow, error

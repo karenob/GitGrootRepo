@@ -51,7 +51,7 @@ export class ServerRequestComponent extends Savable {
         this.serverType = [
             { Description: '--Select--', Value: '' },
             { Description: 'AWS', Value: 'AWS' },
-            { Description: 'Azure', Value: 'AZURE' }
+            { Description: 'Azure', Value: 'AZURE' },
             { Description: 'Stream Data Center', Value: 'Stream Data Center' }
         ];
         this.compliance = [
@@ -211,7 +211,7 @@ export class ServerRequestComponent extends Savable {
 
         //request.addEventListener("load", requestOnLoad);
         //request.open("GET", "https://hznl3btqjg.execute-api.us-east-1.amazonaws.com/test/start");
-        //request.setRequestHeader("x-api-key", "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV");
+        //request.setRequestHeader("x-api-key", "sbfaoxwYcYaxcB9MZmpnR69RB0ojM3Ne92KcDN2Q");
 
         //request.send();
 
@@ -233,7 +233,7 @@ export class ServerRequestComponent extends Savable {
 
         //Or, we can try this:       
         //var headers = new Headers();
-        //headers.append('x-api-key', 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV');
+        //headers.append('x-api-key', 'sbfaoxwYcYaxcB9MZmpnR69RB0ojM3Ne92KcDN2Q');
 
         //this.http
         //    .post(_url,
@@ -248,8 +248,8 @@ export class ServerRequestComponent extends Savable {
 
         // Test workflow. Run each function call one at a time to give the previous one time to complete.
         let apiURL = 'https://vmvendingmachineapi.cloudandinnovation.com/start'
-        let apiKey = 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV'
-        let headerKey = 'x-api-key:BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV';
+        let apiKey = 'sbfaoxwYcYaxcB9MZmpnR69RB0ojM3Ne92KcDN2Q'
+        let headerKey = 'x-api-key:sbfaoxwYcYaxcB9MZmpnR69RB0ojM3Ne92KcDN2Q';
         
         let isApproved = true;
 
@@ -275,7 +275,7 @@ export class ServerRequestComponent extends Savable {
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             credentials: "same-origin", // include, same-origin, *omit
             headers: {
-                "x-api-key": "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV",
+                "x-api-key": "sbfaoxwYcYaxcB9MZmpnR69RB0ojM3Ne92KcDN2Q",
                 "Content-Type": "application/json; charset=utf-8",
             },
             redirect: "follow", // manual, *follow, error

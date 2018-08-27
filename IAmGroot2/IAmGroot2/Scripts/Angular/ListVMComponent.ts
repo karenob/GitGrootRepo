@@ -12,7 +12,7 @@ import { IVMSpecifications, IStateMachine, IVMSpec } from './IVMSpecifications';
 })
 export class ListVMComponent {
     apiURL = 'https://vmvendingmachineapi.cloudandinnovation.com/listvms';
-    apiKey = 'BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV';
+    apiKey = 'sbfaoxwYcYaxcB9MZmpnR69RB0ojM3Ne92KcDN2Q';
     //stateMachines:  IStateMachine[];
     vmSpecification: IVMSpecifications;
     testDataAny: any;
@@ -39,7 +39,7 @@ export class ListVMComponent {
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             credentials: "same-origin", // include, same-origin, *omit
             headers: {
-                "x-api-key": "BPfPDQgjJN2zGDDYFvdUp3oRXgW2TlKy8SpDdeIV",
+                "x-api-key": "sbfaoxwYcYaxcB9MZmpnR69RB0ojM3Ne92KcDN2Q",
                 "Content-Type": "application/json; charset=utf-8",
                 // "Content-Type": "application/x-www-form-urlencoded",
             },
